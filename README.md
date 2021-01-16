@@ -8,3 +8,7 @@
 - [ ] 知乎热搜
 - [ ] 豆瓣
 - [ ] 头条
+
+## 容器化部署
+
+- [使用Docker部署Gunicorn和Flask应用](https://medium.com/better-programming/create-a-running-docker-container-with-gunicorn-and-flask-dcd98fddb8e0)
