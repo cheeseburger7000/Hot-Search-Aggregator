@@ -6,6 +6,7 @@ from weibo import do as weibo_do
 from baidu import do as baidu_do
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 
 
 @app.route('/')
