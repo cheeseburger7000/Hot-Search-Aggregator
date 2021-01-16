@@ -71,28 +71,30 @@ def extract_news_type(node):
     return node.find_all('td', class_='td-03', limit=1)[0].text
 
 
-res = requests.get(WEIBO_TOP_URL)
-status = res.status_code
-if res.status_code == 200:
-    soup = BeautifulSoup(res.content, 'html.parser')
-    items = soup.find('div', {'id': 'pl_top_realtimehot'}).find('table').find('tbody').find_all('tr')
+def do():
     result = []
-    for item in items:
-        rank = extract_rank(item)
-        url = extract_url(item)
-        title = extract_title(item)
-        heat = extract_heat(item)
-        news_type = extract_news_type(item)
+    res = requests.get(WEIBO_TOP_URL)
+    status = res.status_code
+    if status == 200:
+        soup = BeautifulSoup(res.content, 'html.parser')
+        items = soup.find('div', {'id': 'pl_top_realtimehot'}).find('table').find('tbody').find_all('tr')
+        for item in items:
+            rank = extract_rank(item)
+            url = extract_url(item)
+            title = extract_title(item)
+            heat = extract_heat(item)
+            news_type = extract_news_type(item)
 
-        news = {'rank': rank, 'url': url, 'title': title}
-        if news_type:
-            news['news_type'] = news_type
-        if heat is not None:
-            news['heat'] = heat
-        result.append(news)
+            news = {'rank': rank, 'url': url, 'title': title}
+            if news_type:
+                news['news_type'] = news_type
+            if heat is not None:
+                news['heat'] = heat
+            result.append(news)
+    return result
 
-    # today = date.today()
-    # file_path = f'examples/weibo-{str(today)}.json'
-    # with open(file_path, 'w') as f:
-    #     json.dump(result, f, ensure_ascii=False, indent=4)
-    # print('DONE!')
+        # today = date.today()
+        # file_path = f'examples/weibo-{str(today)}.json'
+        # with open(file_path, 'w') as f:
+        #     json.dump(result, f, ensure_ascii=False, indent=4)
+        # print('DONE!')
