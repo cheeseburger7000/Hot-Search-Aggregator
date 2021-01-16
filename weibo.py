@@ -92,7 +92,7 @@ if res.status_code == 200:
         result.append(news)
 
     # today = date.today()
-    # file_path = f'examples/weibo{str(today)}.json'
+    # file_path = f'examples/weibo-{str(today)}.json'
     # with open(file_path, 'w') as f:
     #     json.dump(result, f, ensure_ascii=False, indent=4)
     # print('DONE!')
